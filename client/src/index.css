@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased font-sans selection:bg-agri-200 selection:text-agri-900 min-h-screen flex flex-col;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+.gradient-agri {
+  background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
+}
+
+.gradient-harvest {
+  background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}

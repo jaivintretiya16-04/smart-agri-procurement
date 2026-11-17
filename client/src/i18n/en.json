@@ -1,0 +1,89 @@
+{
+  "app_name": "Smart AgriProcure",
+  "app_tagline": "Transparent Agricultural Procurement & Smart Queue Management",
+  "nav": {
+    "home": "Home",
+    "centers": "Find Centers",
+    "how_it_works": "How It Works",
+    "login": "Sign In",
+    "register": "Register Farmer",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "logout": "Sign Out"
+  },
+  "roles": {
+    "farmer": "Farmer",
+    "operator": "Center Operator",
+    "admin": "Platform Administrator"
+  },
+  "auth": {
+    "login_title": "Sign In to Your Account",
+    "login_subtitle": "Select your role and enter credentials to continue",
+    "register_title": "Farmer Registration",
+    "register_subtitle": "Create an account to book procurement slots and join queues",
+    "email": "Email Address",
+    "password": "Password",
+    "full_name": "Full Name",
+    "mobile": "Mobile Number",
+    "state": "State",
+    "district": "District",
+    "village": "Village / Gram",
+    "pincode": "PIN Code",
+    "preferred_lang": "Preferred Language",
+    "btn_login": "Sign In",
+    "btn_register": "Complete Registration",
+    "no_account": "Don't have an account?",
+    "have_account": "Already registered?",
+    "login_success": "Signed in successfully!",
+    "register_success": "Registration completed successfully!"
+  },
+  "home": {
+    "hero_title": "Smart Agricultural Procurement & Zero-Wait Queue Management",
+    "hero_subtitle": "Compare verified government & private procurement centers, lock transparent prices, reserve capacity slots atomically, and get digital tokens with live queue updates.",
+    "cta_farmer": "Book Procurement Slot",
+    "cta_explore": "Explore Verified Centers",
+    "feat_centers_title": "Transparent Center Discovery",
+    "feat_centers_desc": "Easily compare indicative published rates, location distance, and real-time open capacity.",
+    "feat_booking_title": "Atomic Dual-Capacity Booking",
+    "feat_booking_desc": "No manual staff delay. Automated confirmation strictly enforces farmer count and crop volume caps.",
+    "feat_queue_title": "QR-Based Live Queue",
+    "feat_queue_desc": "Scan on arrival, track your turn live, receive instant alerts, and avoid long lines at the mandi."
+  },
+  "profile": {
+    "title": "Farmer Profile & Settings",
+    "subtitle": "Manage your regional address, contact details, and system language preference",
+    "save_changes": "Save Changes",
+    "saved_success": "Profile updated successfully!"
+  },
+  "queue": {
+    "live_tracker": "Live Mandi Queue & Token Tracker",
+    "now_serving": "Now Serving at Mandi",
+    "my_token": "My Assigned Token",
+    "estimated_wait": "Estimated Waiting Time",
+    "called_alert": "YOUR TOKEN HAS BEEN CALLED! Please proceed to the weighing scale.",
+    "gate_qr": "Gate Check-in QR Token"
+  },
+  "receipts": {
+    "title": "Procurement Receipts & Payment Ledger",
+    "subtitle": "Immutable digital receipts certified with sequential identifiers and direct payment tracking",
+    "voucher_title": "Official Procurement Receipt",
+    "net_payable": "Total Net Amount Payable",
+    "print_voucher": "Print Voucher",
+    "status_paid": "Paid (Disbursed)",
+    "status_processing": "Processing",
+    "status_pending": "Pending"
+  },
+  "emergency": {
+    "pause_title": "Center Pause & Contingency Desk",
+    "emergency_close": "Declare Emergency Mandi Closure",
+    "protected_notice": "Under emergency closure, all appointments are protected from no-show penalties and marked for rescheduling without penalty."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "notice": "Notice",
+    "server_standby": "Waking up server from free-tier standby... Please wait a few moments.",
+    "demo_badge": "COLLEGE DEMO SYSTEM — SYNTHETIC DATA"
+  }
+}

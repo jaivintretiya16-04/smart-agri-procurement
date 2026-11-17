@@ -1,0 +1,30 @@
+{
+  "name": "agri-procure-server",
+  "version": "1.0.0",
+  "description": "Smart Agricultural Procurement & Queue Management System - Backend API",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "migrate": "node src/migrations/runner.js",
+    "seed": "node src/seeds/seed_all.js",
+    "test": "node src/tests/run_all_tests.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1",
+    "socket.io": "^4.8.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "embedded-postgres": "^18.6.0-beta.19",
+    "pg-mem": "^3.0.4"
+  }
+}
