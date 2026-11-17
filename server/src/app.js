@@ -32,14 +32,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow only whitelisted origins or non-browser requests
-    if (!origin || allowedOrigins.includes(origin) || origin?.endsWith('.pages.dev')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Origin not allowed by CORS'), false);
-    }
-  },
+  origin: true, // Dynamically mirror requesting origin (supports localhost, Vercel, Cloudflare Pages, Netlify, Render, etc.)
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'X-Idempotency-Key', 'X-Cron-Secret'],
