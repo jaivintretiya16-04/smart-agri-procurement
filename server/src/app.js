@@ -33,11 +33,11 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow non-browser requests or allowed origins
-    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.pages.dev')) {
+    // Allow only whitelisted origins or non-browser requests
+    if (!origin || allowedOrigins.includes(origin) || origin?.endsWith('.pages.dev')) {
       callback(null, true);
     } else {
-      callback(null, true); // Permissive for college evaluation
+      callback(new Error('Origin not allowed by CORS'), false);
     }
   },
   credentials: true,
