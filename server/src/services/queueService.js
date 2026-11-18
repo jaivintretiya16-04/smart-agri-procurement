@@ -353,15 +353,13 @@ export async function sweepNoShows() {
      FROM bookings b
      JOIN slots s ON b.slot_id = s.id
      JOIN centers c ON b.center_id = c.id
+     LEFT JOIN center_closures cc ON cc.center_id = b.center_id
+       AND cc.start_time <= s.starts_at
+       AND (cc.end_time IS NULL OR cc.end_time >= s.ends_at)
      WHERE b.status = 'confirmed'
        AND s.starts_at + INTERVAL '15 minutes' < NOW()
        AND c.active_state = 'active'
-       AND NOT EXISTS (
-         SELECT 1 FROM center_closures cc
-         WHERE cc.center_id = b.center_id
-           AND cc.start_time <= s.starts_at
-           AND (cc.end_time IS NULL OR cc.end_time >= s.ends_at)
-       )`
+       AND cc.id IS NULL`
   );
 
   let updatedCount = 0;

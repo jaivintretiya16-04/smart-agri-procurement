@@ -5,6 +5,8 @@ import { ENV } from './config/env.js';
 import { initDb } from './config/db.js';
 import { runMigrations } from './migrations/runner.js';
 import { seedAll } from './seeds/seed_all.js';
+import { sweepNoShows } from './services/queueService.js';
+import { processEmailJobs } from './services/notificationService.js';
 
 const server = http.createServer(app);
 
@@ -54,6 +56,16 @@ async function startServer() {
     server.listen(ENV.PORT, () => {
       console.log(`🚀 Server listening on port ${ENV.PORT} (${ENV.NODE_ENV})`);
       console.log(`📡 Socket.IO server attached and ready`);
+
+      // Automated periodic worker (Sweeps no-shows and processes emails every 5 minutes)
+      setInterval(async () => {
+        try {
+          await sweepNoShows();
+          await processEmailJobs();
+        } catch (e) {
+          console.warn('⚠️ [Background Worker Error]:', e.message);
+        }
+      }, 5 * 60 * 1000);
     });
   } catch (err) {
     console.error('💥 Failed to start server:', err);

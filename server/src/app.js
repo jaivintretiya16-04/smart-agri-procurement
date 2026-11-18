@@ -16,6 +16,8 @@ import procurementRoutes from './routes/procurementRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
 import demoRoutes from './routes/demoRoutes.js';
+import { sweepNoShows } from './services/queueService.js';
+import { processEmailJobs } from './services/notificationService.js';
 
 const app = express();
 
@@ -63,6 +65,30 @@ app.get('/api/health', (req, res) => {
     env: ENV.NODE_ENV,
     version: '1.0.0',
   });
+});
+
+// Dedicated Cron endpoint (Called by cron-job.org or external scheduler)
+app.all('/api/cron/trigger', async (req, res, next) => {
+  try {
+    const secret = req.headers['x-cron-secret'] || req.query.secret;
+    if (secret !== ENV.CRON_SECRET) {
+      return res.status(401).json({
+        error: true,
+        code: 'UNAUTHORIZED_CRON',
+        message: 'Invalid or missing CRON_SECRET token',
+      });
+    }
+    const sweepResult = await sweepNoShows();
+    const emailResult = await processEmailJobs();
+    res.json({
+      success: true,
+      timestamp: new Date().toISOString(),
+      sweep: sweepResult,
+      emails: emailResult,
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Mount Routes
