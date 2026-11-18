@@ -56,8 +56,8 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
+// Root & Health check endpoints
+app.get(['/', '/api/health'], (req, res) => {
   res.json({
     status: 'healthy',
     service: 'Smart Agricultural Procurement & Queue Management API',
