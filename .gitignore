@@ -28,7 +28,11 @@ build/
 client/build/
 .cache/
 
-# OS & Editor Artifacts
+# Internal Docs & Presentation Prep (Not submitted to GitHub)
+DEPLOYMENT_RUNBOOK.md
+PRESENTATION_NOTES.md
+PROJECT_PROGRESS.md
+
 .DS_Store
 Thumbs.db
 .vscode/
