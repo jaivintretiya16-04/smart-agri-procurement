@@ -17,7 +17,7 @@ import api from '../../services/api';
 import { useLanguage } from '../../context/LanguageContext';
 
 export function ReceiptsPage() {
-  const { t, language } = useLanguage();
+  const { t, language, localizeCenterName } = useLanguage();
   const [receipts, setReceipts] = useState([]);
   const [payments, setPayments] = useState([]);
   const [selectedReceipt, setSelectedReceipt] = useState(null);
@@ -165,7 +165,7 @@ export function ReceiptsPage() {
                     </div>
 
                     <div className="space-y-1">
-                      <h4 className="text-base font-bold text-slate-900">{r.center_name}</h4>
+                      <h4 className="text-base font-bold text-slate-900">{localizeCenterName(r.center_name)}</h4>
                       <p className="text-xs text-slate-500">
                         {language === 'hi' ? r.crop_name_hi : r.crop_name_en} • Ref: {r.booking_reference}
                       </p>
@@ -240,7 +240,7 @@ export function ReceiptsPage() {
                   {payments.map((p) => (
                     <tr key={p.id} className="hover:bg-slate-50/70">
                       <td className="px-6 py-4 font-bold text-slate-900">{p.receipt_number || p.booking_reference}</td>
-                      <td className="px-6 py-4">{p.center_name}</td>
+                      <td className="px-6 py-4">{localizeCenterName(p.center_name)}</td>
                       <td className="px-6 py-4">{language === 'hi' ? p.crop_name_hi : p.crop_name_en}</td>
                       <td className="px-6 py-4 font-black text-emerald-700">
                         ₹{Number(p.amount).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
@@ -292,7 +292,7 @@ export function ReceiptsPage() {
             <div id="printable-voucher" className="space-y-4 text-xs">
               <div className="text-center space-y-1 border-b border-slate-100 pb-4">
                 <div className="font-black text-base text-slate-900">
-                  {selectedReceipt.center_name}
+                  {localizeCenterName(selectedReceipt.center_name)}
                 </div>
                 <div className="font-mono text-xs font-bold text-emerald-800">
                   Receipt No: {selectedReceipt.receipt_number}

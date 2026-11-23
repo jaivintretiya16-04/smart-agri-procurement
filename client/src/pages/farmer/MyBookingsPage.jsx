@@ -6,7 +6,7 @@ import { QRCodeDisplay } from '../../components/common/QRCodeSvg';
 import { useLanguage } from '../../context/LanguageContext';
 
 export function MyBookingsPage() {
-  const { t, language } = useLanguage();
+  const { t, language, localizeCenterName, localizeCenterAddress } = useLanguage();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -148,13 +148,13 @@ export function MyBookingsPage() {
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-slate-900">{b.center_name}</h3>
+                <h3 className="text-base font-bold text-slate-900">{localizeCenterName(b.center_name)}</h3>
 
                 <div className="space-y-1.5 text-xs text-slate-600">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
                     <span>
-                      {new Date(b.starts_at).toLocaleDateString([], {
+                      {new Date(b.starts_at).toLocaleDateString(language === 'hi' ? 'hi-IN' : [], {
                         weekday: 'short',
                         month: 'short',
                         day: 'numeric',
@@ -173,7 +173,7 @@ export function MyBookingsPage() {
 
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
-                    <span>{b.center_address}, {b.center_district}</span>
+                    <span>{localizeCenterAddress(b.center_name, `${b.center_address}, ${b.center_district}`)}</span>
                   </div>
                 </div>
 

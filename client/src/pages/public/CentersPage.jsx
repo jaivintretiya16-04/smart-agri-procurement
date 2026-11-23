@@ -7,7 +7,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 
 export function CentersPage() {
-  const { t, language } = useLanguage();
+  const { t, language, localizeCenterName, localizeCenterAddress } = useLanguage();
   const { isAuthenticated, role } = useAuth();
   const navigate = useNavigate();
 
@@ -163,12 +163,12 @@ export function CentersPage() {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 leading-snug">{center.name}</h3>
+                <h3 className="text-lg font-bold text-slate-900 leading-snug">{localizeCenterName(center.name)}</h3>
 
                 <div className="space-y-1.5 text-xs text-slate-600">
                   <div className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                    <span>{center.address}, {center.district}</span>
+                    <span>{localizeCenterAddress(center.name, `${center.address}, ${center.district}`)}</span>
                   </div>
                   {center.contact_phone && (
                     <div className="flex items-center gap-2">

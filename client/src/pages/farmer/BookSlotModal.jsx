@@ -6,7 +6,7 @@ import { QRCodeDisplay } from '../../components/common/QRCodeSvg';
 import { useLanguage } from '../../context/LanguageContext';
 
 export function BookSlotModal({ center, onClose }) {
-  const { t, language } = useLanguage();
+  const { t, language, localizeCenterName, localizeCenterAddress } = useLanguage();
   const navigate = useNavigate();
 
   const tomorrow = new Date();
@@ -124,7 +124,7 @@ export function BookSlotModal({ center, onClose }) {
             <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-xs text-left space-y-1.5">
               <div className="flex justify-between">
                 <span className="text-slate-400">{t('book_slot_modal.center_label')}</span>
-                <span className="font-bold text-slate-800">{center.name}</span>
+                <span className="font-bold text-slate-800">{localizeCenterName(center.name)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">{t('book_slot_modal.reserved_crop_label')}</span>
@@ -163,8 +163,8 @@ export function BookSlotModal({ center, onClose }) {
               <span className="text-[11px] font-bold text-agri-700 uppercase tracking-wider block">
                 {t('book_slot_modal.badge')}
               </span>
-              <h2 className="text-xl font-black text-slate-900">{center.name}</h2>
-              <p className="text-xs text-slate-500">{center.address}, {center.district}</p>
+              <h2 className="text-xl font-black text-slate-900">{localizeCenterName(center.name)}</h2>
+              <p className="text-xs text-slate-500">{localizeCenterAddress(center.name, `${center.address}, ${center.district}`)}</p>
             </div>
 
             {error && (

@@ -17,7 +17,7 @@ import { QRCodeDisplay } from '../../components/common/QRCodeSvg';
 import { useLanguage } from '../../context/LanguageContext';
 
 export function LiveQueueTrackerPage() {
-  const { t, language } = useLanguage();
+  const { t, language, localizeCenterName } = useLanguage();
   const [searchParams] = useSearchParams();
   const centerIdParam = searchParams.get('centerId');
   const bookingIdParam = searchParams.get('bookingId');
@@ -191,7 +191,7 @@ export function LiveQueueTrackerPage() {
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  {b.center_name} ({new Date(b.starts_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})
+                  {localizeCenterName(b.center_name)} ({new Date(b.starts_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})
                 </button>
               ))}
             </div>
@@ -300,7 +300,7 @@ export function LiveQueueTrackerPage() {
                       Status: {selectedBooking.status.toUpperCase()}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900">{selectedBooking.center_name}</h3>
+                  <h3 className="text-xl font-bold text-slate-900">{localizeCenterName(selectedBooking.center_name)}</h3>
                   <p className="text-xs text-slate-500">{selectedBooking.center_address}, {selectedBooking.center_district}</p>
                 </div>
 

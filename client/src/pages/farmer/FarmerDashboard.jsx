@@ -21,7 +21,7 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export function FarmerDashboard() {
   const { user } = useAuth();
-  const { t, language } = useLanguage();
+  const { t, language, localizeCenterName, localizeCenterAddress } = useLanguage();
 
   // Search & Recommendation State
   const [crops, setCrops] = useState([]);
@@ -356,8 +356,8 @@ export function FarmerDashboard() {
                           ))}
                         </div>
 
-                        <h4 className="text-lg font-bold text-slate-900">{rec.name}</h4>
-                        <p className="text-xs text-slate-500">{rec.address}, {rec.district}</p>
+                        <h4 className="text-lg font-bold text-slate-900">{localizeCenterName(rec.name)}</h4>
+                        <p className="text-xs text-slate-500">{localizeCenterAddress(rec.name, `${rec.address}, ${rec.district}`)}</p>
 
                         <div className="flex flex-wrap items-center gap-4 text-xs pt-1">
                           {/* Distance */}
