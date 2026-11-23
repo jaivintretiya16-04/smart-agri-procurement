@@ -22,39 +22,39 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-3">Key Features</h4>
+            <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-3">{t('footer.features_title')}</h4>
             <ul className="text-sm space-y-2">
               <li className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                Verified Mandi & Center Directory
+                {t('footer.feat_directory')}
               </li>
               <li className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                Atomic Dual-Capacity Slot Booking
+                {t('footer.feat_booking')}
               </li>
               <li className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                QR Token Check-In & Live Queue
+                {t('footer.feat_queue')}
               </li>
               <li className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                Hindi & English Bilingual UI
+                {t('footer.feat_bilingual')}
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-3">Academic Notice</h4>
+            <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-3">{t('footer.academic_title')}</h4>
             <p className="text-xs text-slate-400 leading-relaxed bg-slate-800/60 p-3 rounded-lg border border-slate-700">
-              This application uses synthetic test data (Lucknow region) and simulates procurement workflows. No actual financial transactions or government MSP integrations are processed.
+              {t('footer.academic_desc')}
             </p>
           </div>
         </div>
 
         <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© 2026 Smart Agricultural Procurement System. College Final Year Project.</p>
+          <p>{t('footer.copyright')}</p>
           <p className="flex items-center gap-1">
-            Engineered with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" /> for Indian Farmers
+            {t('footer.engineered_for')} <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
           </p>
         </div>
       </div>

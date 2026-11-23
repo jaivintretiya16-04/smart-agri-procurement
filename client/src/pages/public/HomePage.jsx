@@ -22,7 +22,7 @@ export function HomePage() {
         <div className="relative max-w-3xl space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold tracking-wide uppercase text-emerald-200 border border-white/20">
             <Sparkles className="w-3.5 h-3.5 text-harvest-300" />
-            <span>Smart Mandi Queue Automation</span>
+            <span>{t('home.hero_badge')}</span>
           </div>
 
           <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
@@ -39,7 +39,7 @@ export function HomePage() {
                 to={getDashboardPath()}
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-agri-900 font-extrabold hover:bg-emerald-50 transition-all shadow-lg shadow-black/20"
               >
-                <span>Go to {t('nav.dashboard')}</span>
+                <span>{t('home.go_to_dashboard')}</span>
                 <ArrowRight className="w-5 h-5 text-agri-700" />
               </Link>
             ) : (

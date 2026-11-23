@@ -68,11 +68,11 @@ export function CentersPage() {
       <div className="max-w-3xl space-y-2">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Verified Mandi Directory</span>
+          <span>{t('centers_page.badge')}</span>
         </div>
-        <h1 className="text-3xl font-black text-slate-900 tracking-tight">{t('nav.centers')}</h1>
+        <h1 className="text-3xl font-black text-slate-900 tracking-tight">{t('centers_page.title')}</h1>
         <p className="text-sm text-slate-600">
-          Compare verified government procurement centers and private agrilogistics hubs. View published indicative rates and reserve available 30-minute capacity slots.
+          {t('centers_page.subtitle')}
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export function CentersPage() {
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            All Crops
+            {t('centers_page.all_crops')}
           </button>
           {crops.map((cr) => (
             <button
@@ -113,9 +113,9 @@ export function CentersPage() {
             onChange={(e) => setSelectedType(e.target.value)}
             className="text-xs font-bold text-slate-700 bg-slate-100 border border-slate-200 rounded-xl px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-agri-500"
           >
-            <option value="">All Center Types</option>
-            <option value="government">Government Mandi</option>
-            <option value="private">Private Hub</option>
+            <option value="">{t('centers_page.all_types')}</option>
+            <option value="government">{t('centers_page.gov_mandi')}</option>
+            <option value="private">{t('centers_page.private_hub')}</option>
           </select>
         </div>
       </div>
@@ -133,8 +133,8 @@ export function CentersPage() {
       ) : filteredCenters.length === 0 ? (
         <div className="bg-white p-12 rounded-2xl border border-slate-200 text-center space-y-2">
           <Building2 className="w-8 h-8 text-slate-300 mx-auto" />
-          <h3 className="text-base font-bold text-slate-700">No procurement centers match filters</h3>
-          <p className="text-xs text-slate-500">Try selecting "All Crops" or resetting the center type.</p>
+          <h3 className="text-base font-bold text-slate-700">{t('centers_page.no_results_title')}</h3>
+          <p className="text-xs text-slate-500">{t('centers_page.no_results_desc')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -154,12 +154,12 @@ export function CentersPage() {
                     }`}
                   >
                     <Building2 className="w-3 h-3" />
-                    {center.type === 'government' ? 'Government Mandi' : 'Private Hub'}
+                    {center.type === 'government' ? t('centers_page.gov_mandi') : t('centers_page.private_hub')}
                   </span>
 
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700">
                     <ShieldCheck className="w-3.5 h-3.5" />
-                    Verified
+                    {t('centers_page.verified')}
                   </span>
                 </div>
 
@@ -181,7 +181,7 @@ export function CentersPage() {
                 {/* Published Indicative Crop Rates */}
                 <div className="pt-2 border-t border-slate-100 space-y-2">
                   <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
-                    Published Indicative Rates
+                    {t('centers_page.published_rates')}
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {center.crops?.map((cr) => (
@@ -207,7 +207,7 @@ export function CentersPage() {
                   onClick={() => handleBookClick(center)}
                   className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-agri-50 text-agri-800 border border-agri-200 font-bold text-xs hover:bg-agri-600 hover:text-white transition-all group"
                 >
-                  <span>Book 30-Min Slot at this Center</span>
+                  <span>{t('centers_page.book_btn')}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>

@@ -8,32 +8,32 @@ export function HowItWorksPage() {
   const steps = [
     {
       num: '1',
-      title: 'Compare & Discover',
-      desc: 'Farmers select crop and estimated quantity. The system applies a 40/30/20/10 multi-factor formula (Price, Proximity, Slot, Wait Time) to recommend optimal centers.',
+      titleKey: 'how_it_works_page.step1_title',
+      descKey: 'how_it_works_page.step1_desc',
       icon: Search,
     },
     {
       num: '2',
-      title: 'Atomic Capacity Booking',
-      desc: 'Book a 30-minute slot instantly. The engine atomically checks both maximum farmer count and crop volume caps, generating a unique signed QR token.',
+      titleKey: 'how_it_works_page.step2_title',
+      descKey: 'how_it_works_page.step2_desc',
       icon: Calendar,
     },
     {
       num: '3',
-      title: 'Check-in & Smart Queue',
-      desc: 'Arrive at the center within -15 to +15 minutes of slot start. The operator scans your QR, ordering the queue by scheduled slot, then arrival time.',
+      titleKey: 'how_it_works_page.step3_title',
+      descKey: 'how_it_works_page.step3_desc',
       icon: QrCode,
     },
     {
       num: '4',
-      title: 'Weighing & Digital Receipt',
-      desc: 'Crops are graded and weighed. Deductions are calculated with exact decimal arithmetic, issuing an immutable, traceable digital receipt.',
+      titleKey: 'how_it_works_page.step4_title',
+      descKey: 'how_it_works_page.step4_desc',
       icon: Scale,
     },
     {
       num: '5',
-      title: 'Transparent Payment Tracking',
-      desc: 'Follow transparent payment progression (pending -> processing -> paid) with recorded reference details and audit timestamps.',
+      titleKey: 'how_it_works_page.step5_title',
+      descKey: 'how_it_works_page.step5_desc',
       icon: CreditCard,
     },
   ];
@@ -41,9 +41,9 @@ export function HowItWorksPage() {
   return (
     <div className="space-y-12 py-8">
       <div className="max-w-3xl space-y-2">
-        <h1 className="text-3xl font-black text-slate-900 tracking-tight">{t('nav.how_it_works')}</h1>
-        <p className="text-sm text-slate-600">
-          The 5-step automated workflow connecting farmers to verified procurement centers without queues or manual delays.
+        <h1 className="text-3xl font-black text-slate-900 tracking-tight">{t('how_it_works_page.title')}</h1>
+        <p className="text-sm text-slate-600 leading-relaxed">
+          {t('how_it_works_page.subtitle')}
         </p>
       </div>
 
@@ -58,8 +58,8 @@ export function HowItWorksPage() {
                 </div>
                 <span className="text-2xl font-black text-slate-200">0{step.num}</span>
               </div>
-              <h3 className="text-lg font-bold text-slate-900">{step.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+              <h3 className="text-lg font-bold text-slate-900">{t(step.titleKey)}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">{t(step.descKey)}</p>
             </div>
           );
         })}

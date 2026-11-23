@@ -38,16 +38,58 @@
     "register_success": "Registration completed successfully!"
   },
   "home": {
+    "hero_badge": "Smart Mandi Queue Automation",
     "hero_title": "Smart Agricultural Procurement & Zero-Wait Queue Management",
     "hero_subtitle": "Compare verified government & private procurement centers, lock transparent prices, reserve capacity slots atomically, and get digital tokens with live queue updates.",
     "cta_farmer": "Book Procurement Slot",
     "cta_explore": "Explore Verified Centers",
+    "go_to_dashboard": "Go to Dashboard",
     "feat_centers_title": "Transparent Center Discovery",
     "feat_centers_desc": "Easily compare indicative published rates, location distance, and real-time open capacity.",
     "feat_booking_title": "Atomic Dual-Capacity Booking",
     "feat_booking_desc": "No manual staff delay. Automated confirmation strictly enforces farmer count and crop volume caps.",
     "feat_queue_title": "QR-Based Live Queue",
     "feat_queue_desc": "Scan on arrival, track your turn live, receive instant alerts, and avoid long lines at the mandi."
+  },
+  "how_it_works_page": {
+    "title": "How It Works",
+    "subtitle": "The 5-step automated workflow connecting farmers to verified procurement centers without queues or manual delays.",
+    "step1_title": "Compare & Discover",
+    "step1_desc": "Farmers select crop and estimated quantity. The system applies a 40/30/20/10 multi-factor formula (Price, Proximity, Slot, Wait Time) to recommend optimal centers.",
+    "step2_title": "Atomic Capacity Booking",
+    "step2_desc": "Book a 30-minute slot instantly. The engine atomically checks both maximum farmer count and crop volume caps, generating a unique signed QR token.",
+    "step3_title": "Check-in & Smart Queue",
+    "step3_desc": "Arrive at the center within -15 to +15 minutes of slot start. The operator scans your QR, ordering the queue by scheduled slot, then arrival time.",
+    "step4_title": "Weighing & Digital Receipt",
+    "step4_desc": "Crops are graded and weighed. Deductions are calculated with exact decimal arithmetic, issuing an immutable, traceable digital receipt.",
+    "step5_title": "Transparent Payment Tracking",
+    "step5_desc": "Follow transparent payment progression (pending -> processing -> paid) with recorded reference details and audit timestamps."
+  },
+  "centers_page": {
+    "badge": "Verified Mandi Directory",
+    "title": "Find Verified Centers",
+    "subtitle": "Compare verified government procurement centers and private agrilogistics hubs. View published indicative rates and reserve available 30-minute capacity slots.",
+    "all_crops": "All Crops",
+    "all_types": "All Center Types",
+    "gov_mandi": "Government Mandi (MSP)",
+    "private_hub": "Private Hub",
+    "verified": "Verified",
+    "published_rates": "Published Indicative Rates",
+    "book_btn": "Book 30-Min Slot at this Center",
+    "no_results_title": "No procurement centers match filters",
+    "no_results_desc": "Try selecting \"All Crops\" or resetting the center type."
+  },
+  "footer": {
+    "tagline": "Dedicated to modernizing agricultural procurement with fair prices and transparent queues.",
+    "features_title": "Key Features",
+    "feat_directory": "Verified Mandi Directory",
+    "feat_booking": "Atomic Dual-Capacity Booking",
+    "feat_queue": "QR Token Check-In & Live Queue",
+    "feat_bilingual": "Hindi & English Bilingual UI",
+    "academic_title": "Academic Notice",
+    "academic_desc": "This application uses synthetic test data (Lucknow region) and simulates procurement workflows. No actual financial transactions or government MSP integrations are processed.",
+    "copyright": "© 2026 Smart Agricultural Procurement System. College Final Year Project.",
+    "engineered_for": "Engineered for Indian Farmers"
   },
   "profile": {
     "title": "Farmer Profile & Settings",
