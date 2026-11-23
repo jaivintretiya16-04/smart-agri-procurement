@@ -136,14 +136,14 @@ export function LiveQueueTrackerPage() {
           className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-agri-700 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to Farmer Portal</span>
+          <span>{t('queue_tracker.back_to_portal')}</span>
         </Link>
 
         <Link
           to="/farmer/bookings"
           className="text-xs font-bold text-agri-700 hover:underline"
         >
-          View All Bookings
+          {t('queue_tracker.view_all_bookings')}
         </Link>
       </div>
 
@@ -151,13 +151,13 @@ export function LiveQueueTrackerPage() {
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold mb-2">
           <Clock className="w-3.5 h-3.5" />
-          <span>Live Mandi Queue & Token Tracker</span>
+          <span>{t('queue_tracker.badge')}</span>
         </div>
         <h1 className="text-3xl font-black text-slate-900 tracking-tight">
-          Real-Time Token Position & Arrival Window
+          {t('queue_tracker.title')}
         </h1>
         <p className="text-sm text-slate-500">
-          Live updates directly synchronized with center dispatch operators.
+          {t('queue_tracker.subtitle')}
         </p>
       </div>
 

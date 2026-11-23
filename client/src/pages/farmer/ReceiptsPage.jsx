@@ -58,14 +58,14 @@ export function ReceiptsPage() {
           className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-agri-700 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to Farmer Portal</span>
+          <span>{t('receipts_page.back_to_portal')}</span>
         </Link>
 
         <Link
           to="/farmer/bookings"
           className="text-xs font-bold text-agri-700 hover:underline"
         >
-          View Appointments
+          {t('receipts_page.view_appointments')}
         </Link>
       </div>
 
@@ -73,13 +73,13 @@ export function ReceiptsPage() {
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-2">
           <Receipt className="w-3.5 h-3.5" />
-          <span>Digital Procurement Vouchers & Payments</span>
+          <span>{t('receipts_page.badge')}</span>
         </div>
         <h1 className="text-3xl font-black text-slate-900 tracking-tight">
-          Procurement Receipts & Payment Ledger
+          {t('receipts_page.title')}
         </h1>
         <p className="text-sm text-slate-500">
-          Immutable digital receipts certified with sequential identifiers and direct payment tracking.
+          {t('receipts_page.subtitle')}
         </p>
       </div>
 
@@ -99,7 +99,7 @@ export function ReceiptsPage() {
               : 'bg-white text-slate-600 hover:bg-slate-100'
           }`}
         >
-          Digital Receipts ({receipts.length})
+          {t('receipts_page.tab_receipts')} ({receipts.length})
         </button>
         <button
           onClick={() => setActiveTab('payments')}
@@ -109,7 +109,7 @@ export function ReceiptsPage() {
               : 'bg-white text-slate-600 hover:bg-slate-100'
           }`}
         >
-          Payment Status History ({payments.length})
+          {t('receipts_page.tab_payments')} ({payments.length})
         </button>
       </div>
 

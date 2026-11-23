@@ -104,13 +104,13 @@ export function FarmerDashboard() {
         <div className="relative z-10 space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-200 text-xs font-bold border border-emerald-400/20">
             <Sprout className="w-3.5 h-3.5" />
-            <span>{t('roles.farmer')} Portal</span>
+            <span>{t('farmer_dashboard.portal_badge')}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black">
-            Welcome, {user?.name || 'Farmer'}!
+            {t('farmer_dashboard.welcome')}, {user?.name || 'Farmer'}!
           </h1>
           <p className="text-sm text-emerald-100 max-w-xl">
-            Compare verified procurement centers, reserve capacity-controlled slots atomically, and view your digital queue tokens.
+            {t('farmer_dashboard.welcome_desc')}
           </p>
         </div>
       </div>
@@ -122,9 +122,9 @@ export function FarmerDashboard() {
           className="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-agri-300 hover:shadow-md transition-all flex items-center justify-between group"
         >
           <div className="space-y-1">
-            <span className="text-xs font-extrabold text-agri-700 uppercase tracking-wider block">Bookings</span>
-            <h4 className="text-sm font-black text-slate-900">Appointments & QR</h4>
-            <p className="text-xs text-slate-500">Upcoming slots & tokens</p>
+            <span className="text-xs font-extrabold text-agri-700 uppercase tracking-wider block">{t('farmer_dashboard.nav_bookings_tag')}</span>
+            <h4 className="text-sm font-black text-slate-900">{t('farmer_dashboard.nav_bookings_title')}</h4>
+            <p className="text-xs text-slate-500">{t('farmer_dashboard.nav_bookings_desc')}</p>
           </div>
           <Calendar className="w-6 h-6 text-agri-600 group-hover:scale-110 transition-transform" />
         </Link>
@@ -134,9 +134,9 @@ export function FarmerDashboard() {
           className="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-blue-300 hover:shadow-md transition-all flex items-center justify-between group"
         >
           <div className="space-y-1">
-            <span className="text-xs font-extrabold text-blue-700 uppercase tracking-wider block">Real-time</span>
-            <h4 className="text-sm font-black text-slate-900">Live Mandi Queue</h4>
-            <p className="text-xs text-slate-500">Track token call status</p>
+            <span className="text-xs font-extrabold text-blue-700 uppercase tracking-wider block">{t('farmer_dashboard.nav_queue_tag')}</span>
+            <h4 className="text-sm font-black text-slate-900">{t('farmer_dashboard.nav_queue_title')}</h4>
+            <p className="text-xs text-slate-500">{t('farmer_dashboard.nav_queue_desc')}</p>
           </div>
           <Clock className="w-6 h-6 text-blue-600 group-hover:scale-110 transition-transform" />
         </Link>
@@ -146,9 +146,9 @@ export function FarmerDashboard() {
           className="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-300 hover:shadow-md transition-all flex items-center justify-between group"
         >
           <div className="space-y-1">
-            <span className="text-xs font-extrabold text-emerald-700 uppercase tracking-wider block">Vouchers</span>
-            <h4 className="text-sm font-black text-slate-900">Receipts & Payments</h4>
-            <p className="text-xs text-slate-500">Certified bills & DBT status</p>
+            <span className="text-xs font-extrabold text-emerald-700 uppercase tracking-wider block">{t('farmer_dashboard.nav_receipts_tag')}</span>
+            <h4 className="text-sm font-black text-slate-900">{t('farmer_dashboard.nav_receipts_title')}</h4>
+            <p className="text-xs text-slate-500">{t('farmer_dashboard.nav_receipts_desc')}</p>
           </div>
           <Receipt className="w-6 h-6 text-emerald-600 group-hover:scale-110 transition-transform" />
         </Link>
@@ -158,9 +158,9 @@ export function FarmerDashboard() {
           className="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-amber-300 hover:shadow-md transition-all flex items-center justify-between group"
         >
           <div className="space-y-1">
-            <span className="text-xs font-extrabold text-amber-700 uppercase tracking-wider block">Directory</span>
-            <h4 className="text-sm font-black text-slate-900">Procurement Mandis</h4>
-            <p className="text-xs text-slate-500">Gov & private center rates</p>
+            <span className="text-xs font-extrabold text-amber-700 uppercase tracking-wider block">{t('farmer_dashboard.nav_centers_tag')}</span>
+            <h4 className="text-sm font-black text-slate-900">{t('farmer_dashboard.nav_centers_title')}</h4>
+            <p className="text-xs text-slate-500">{t('farmer_dashboard.nav_centers_desc')}</p>
           </div>
           <Building2 className="w-6 h-6 text-amber-600 group-hover:scale-110 transition-transform" />
         </Link>
@@ -175,10 +175,10 @@ export function FarmerDashboard() {
             </div>
             <div>
               <h2 className="text-xl font-bold text-slate-900">
-                Smart Balanced Center Recommendations (FR-04)
+                {t('farmer_dashboard.recom_title')}
               </h2>
               <p className="text-xs text-slate-500">
-                Deterministic rules-based scoring: 40% Price, 30% Proximity, 20% Earliest Slot, 10% Wait Time.
+                {t('farmer_dashboard.recom_subtitle')}
               </p>
             </div>
           </div>
@@ -195,7 +195,7 @@ export function FarmerDashboard() {
             {/* Select Crop */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                Select Crop Variety *
+                {t('farmer_dashboard.crop_label')}
               </label>
               <select
                 value={selectedCrop}
@@ -213,7 +213,7 @@ export function FarmerDashboard() {
             {/* Estimated Quantity */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                Estimated Crop Quantity (Quintals) *
+                {t('farmer_dashboard.qty_label')}
               </label>
               <div className="relative">
                 <input
@@ -227,7 +227,7 @@ export function FarmerDashboard() {
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-800 focus:ring-2 focus:ring-agri-500 focus:outline-none"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">
-                  Quintals
+                  {language === 'hi' ? 'क्विंटल' : 'Quintals'}
                 </span>
               </div>
             </div>
@@ -235,7 +235,7 @@ export function FarmerDashboard() {
             {/* Location Source */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                Origin Coordinates
+                {t('farmer_dashboard.origin_label')}
               </label>
               <div className="flex gap-2">
                 <button
@@ -248,7 +248,7 @@ export function FarmerDashboard() {
                   }`}
                 >
                   <Navigation className="w-3.5 h-3.5" />
-                  <span>{useGps ? 'GPS Acquired' : 'Use Device GPS'}</span>
+                  <span>{useGps ? t('farmer_dashboard.using_gps') : t('farmer_dashboard.use_gps')}</span>
                 </button>
               </div>
             </div>
@@ -276,7 +276,7 @@ export function FarmerDashboard() {
               ) : (
                 <>
                   <Search className="w-4 h-4" />
-                  <span>Find & Rank Optimal Procurement Centers</span>
+                  <span>{t('farmer_dashboard.search_btn')}</span>
                 </>
               )}
             </button>

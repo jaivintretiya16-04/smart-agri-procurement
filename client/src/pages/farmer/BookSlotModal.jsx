@@ -6,7 +6,7 @@ import { QRCodeDisplay } from '../../components/common/QRCodeSvg';
 import { useLanguage } from '../../context/LanguageContext';
 
 export function BookSlotModal({ center, onClose }) {
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
 
   const tomorrow = new Date();
@@ -108,9 +108,9 @@ export function BookSlotModal({ center, onClose }) {
               <CheckCircle2 className="w-7 h-7" />
             </div>
 
-            <h3 className="text-xl font-black text-slate-900">Appointment Confirmed!</h3>
+            <h3 className="text-xl font-black text-slate-900">{t('book_slot_modal.confirmed_title')}</h3>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              Your appointment has been reserved atomically. No manual approval required. Present your digital token at the center.
+              {t('book_slot_modal.confirmed_desc')}
             </p>
 
             <div className="py-2 flex justify-center">
@@ -123,17 +123,17 @@ export function BookSlotModal({ center, onClose }) {
 
             <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-xs text-left space-y-1.5">
               <div className="flex justify-between">
-                <span className="text-slate-400">Center:</span>
+                <span className="text-slate-400">{t('book_slot_modal.center_label')}</span>
                 <span className="font-bold text-slate-800">{center.name}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Reserved Crop:</span>
+                <span className="text-slate-400">{t('book_slot_modal.reserved_crop_label')}</span>
                 <span className="font-bold text-slate-800">
-                  {quantity} Quintals of {selectedCrop?.name_en || 'Crop'}
+                  {quantity} {language === 'hi' ? 'क्विंटल' : 'Quintals'} ({language === 'hi' ? selectedCrop?.name_hi : selectedCrop?.name_en || 'Crop'})
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Locked Rate:</span>
+                <span className="text-slate-400">{t('book_slot_modal.locked_rate_label')}</span>
                 <span className="font-extrabold text-agri-700">₹{confirmedBooking.booking.price_snapshot}/q</span>
               </div>
             </div>
@@ -143,7 +143,7 @@ export function BookSlotModal({ center, onClose }) {
                 onClick={onClose}
                 className="py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50"
               >
-                Close
+                {t('book_slot_modal.close_btn')}
               </button>
               <button
                 onClick={() => {
@@ -152,7 +152,7 @@ export function BookSlotModal({ center, onClose }) {
                 }}
                 className="py-2.5 px-4 rounded-xl gradient-agri text-white font-bold text-xs hover:opacity-95"
               >
-                Go to My Bookings
+                {t('book_slot_modal.go_to_bookings_btn')}
               </button>
             </div>
           </div>
@@ -161,7 +161,7 @@ export function BookSlotModal({ center, onClose }) {
           <>
             <div>
               <span className="text-[11px] font-bold text-agri-700 uppercase tracking-wider block">
-                Instant Capacity-Controlled Booking
+                {t('book_slot_modal.badge')}
               </span>
               <h2 className="text-xl font-black text-slate-900">{center.name}</h2>
               <p className="text-xs text-slate-500">{center.address}, {center.district}</p>
@@ -179,7 +179,7 @@ export function BookSlotModal({ center, onClose }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                    Accepted Crop Variety *
+                    {t('book_slot_modal.accepted_crop')}
                   </label>
                   <select
                     value={selectedCropId}
@@ -196,7 +196,7 @@ export function BookSlotModal({ center, onClose }) {
 
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                    Estimated Quantity (q) *
+                    {t('book_slot_modal.estimated_qty')}
                   </label>
                   <input
                     type="number"
@@ -214,7 +214,7 @@ export function BookSlotModal({ center, onClose }) {
               {/* Date Selector */}
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                  Appointment Date *
+                  {t('book_slot_modal.appointment_date')}
                 </label>
                 <input
                   type="date"
@@ -229,18 +229,18 @@ export function BookSlotModal({ center, onClose }) {
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-bold text-slate-700 uppercase tracking-wider">
-                    Available 30-Minute Slots
+                    {t('book_slot_modal.slots_heading')}
                   </span>
                   <span className="text-slate-400 text-[11px]">
-                    Limits: 10 farmers / 100 quintals per slot
+                    {t('book_slot_modal.slots_subheading')}
                   </span>
                 </div>
 
                 {loadingSlots ? (
-                  <div className="p-6 text-center text-xs text-slate-400">Loading open slots...</div>
+                  <div className="p-6 text-center text-xs text-slate-400">{t('book_slot_modal.loading_slots')}</div>
                 ) : slots.length === 0 ? (
                   <div className="p-4 text-center bg-slate-50 rounded-xl text-xs text-slate-500">
-                    No operating slots available on this date (Center may be closed).
+                    {t('book_slot_modal.no_slots')}
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto p-1">
@@ -272,7 +272,7 @@ export function BookSlotModal({ center, onClose }) {
                         >
                           <span className="text-[11px] font-bold block">{timeStr}</span>
                           <span className={`text-[10px] block ${isSelected ? 'text-emerald-100' : 'text-slate-400'}`}>
-                            {s.available_farmers} spots left ({s.available_quintals}q)
+                            {s.available_farmers} {t('book_slot_modal.spots_left')} ({s.available_quintals}q)
                           </span>
                         </button>
                       );
@@ -285,10 +285,10 @@ export function BookSlotModal({ center, onClose }) {
               {selectedCrop && (
                 <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs flex items-center justify-between">
                   <span className="text-emerald-900 font-semibold">
-                    Indicative Price Snapshot: ₹{selectedCrop.rate_per_quintal || selectedCrop.price_per_quintal}/q
+                    {t('book_slot_modal.indicative_snapshot')}: ₹{selectedCrop.rate_per_quintal || selectedCrop.price_per_quintal}/q
                   </span>
                   <span className="text-emerald-950 font-black">
-                    Est. Total: ₹{((selectedCrop.rate_per_quintal || selectedCrop.price_per_quintal || 0) * (parseFloat(quantity) || 0)).toLocaleString('en-IN')}
+                    {t('book_slot_modal.est_total')}: ₹{((selectedCrop.rate_per_quintal || selectedCrop.price_per_quintal || 0) * (parseFloat(quantity) || 0)).toLocaleString('en-IN')}
                   </span>
                 </div>
               )}
@@ -299,7 +299,7 @@ export function BookSlotModal({ center, onClose }) {
                   onClick={onClose}
                   className="px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-100"
                 >
-                  Cancel
+                  {t('book_slot_modal.cancel_btn')}
                 </button>
                 <button
                   type="submit"
@@ -310,7 +310,7 @@ export function BookSlotModal({ center, onClose }) {
                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                   ) : (
                     <>
-                      <span>Confirm & Reserve Slot</span>
+                      <span>{t('book_slot_modal.confirm_btn')}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </>
                   )}

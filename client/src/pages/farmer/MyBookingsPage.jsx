@@ -63,15 +63,15 @@ export function MyBookingsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight">My Procurement Bookings</h1>
-          <p className="text-sm text-slate-500">Track active appointments, download digital QR tokens, or manage slots.</p>
+          <h1 className="text-3xl font-black text-slate-900 tracking-tight">{t('my_bookings.title')}</h1>
+          <p className="text-sm text-slate-500">{t('my_bookings.subtitle')}</p>
         </div>
 
         <Link
           to="/centers"
           className="inline-flex items-center gap-2 py-2.5 px-4 rounded-xl gradient-agri text-white font-bold text-xs shadow-md hover:opacity-95"
         >
-          <span>Book New Slot</span>
+          <span>{t('my_bookings.book_new_btn')}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
@@ -83,7 +83,7 @@ export function MyBookingsPage() {
             <span className="font-semibold">{actionSuccess}</span>
           </div>
           <button onClick={() => setActionSuccess('')} className="text-emerald-700 font-bold hover:underline">
-            Dismiss
+            {language === 'hi' ? 'हटाएं' : 'Dismiss'}
           </button>
         </div>
       )}
@@ -91,10 +91,10 @@ export function MyBookingsPage() {
       {/* Tabs */}
       <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
         {[
-          { id: 'all', label: 'All Bookings' },
-          { id: 'active', label: 'Active & Upcoming' },
-          { id: 'completed', label: 'Completed' },
-          { id: 'cancelled', label: 'Cancelled / History' },
+          { id: 'all', label: t('my_bookings.tab_all') },
+          { id: 'active', label: t('my_bookings.tab_active') },
+          { id: 'completed', label: t('my_bookings.tab_completed') },
+          { id: 'cancelled', label: t('my_bookings.tab_cancelled') },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -112,12 +112,12 @@ export function MyBookingsPage() {
 
       {/* Bookings List */}
       {loading ? (
-        <div className="p-12 text-center text-xs text-slate-500 font-medium">Loading bookings...</div>
+        <div className="p-12 text-center text-xs text-slate-500 font-medium">{t('my_bookings.loading')}</div>
       ) : filteredBookings.length === 0 ? (
         <div className="bg-white rounded-3xl p-12 border border-slate-200 text-center space-y-3">
           <Calendar className="w-8 h-8 text-slate-300 mx-auto" />
-          <h3 className="text-base font-bold text-slate-800">No bookings in this category</h3>
-          <p className="text-xs text-slate-500">Compare verified procurement centers and book your first slot.</p>
+          <h3 className="text-base font-bold text-slate-800">{t('my_bookings.no_bookings_title')}</h3>
+          <p className="text-xs text-slate-500">{t('my_bookings.no_bookings_desc')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -180,19 +180,19 @@ export function MyBookingsPage() {
                 {/* Crop & Price Snapshot */}
                 <div className="pt-2 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-xs">
                   <div className="p-2 rounded-xl bg-slate-50">
-                    <span className="text-[10px] text-slate-400 font-bold block">Crop</span>
+                    <span className="text-[10px] text-slate-400 font-bold block">{t('my_bookings.card_crop')}</span>
                     <span className="font-extrabold text-slate-800">
                       {language === 'hi' ? b.crop_name_hi : b.crop_name_en?.split(' ')[0]}
                     </span>
                   </div>
 
                   <div className="p-2 rounded-xl bg-slate-50">
-                    <span className="text-[10px] text-slate-400 font-bold block">Quantity</span>
-                    <span className="font-extrabold text-slate-800">{b.estimated_quintals} q</span>
+                    <span className="text-[10px] text-slate-400 font-bold block">{t('my_bookings.card_quantity')}</span>
+                    <span className="font-extrabold text-slate-800">{b.estimated_quintals} {language === 'hi' ? 'क्विंटल' : 'q'}</span>
                   </div>
 
                   <div className="p-2 rounded-xl bg-slate-50">
-                    <span className="text-[10px] text-slate-400 font-bold block">Rate Snapshot</span>
+                    <span className="text-[10px] text-slate-400 font-bold block">{t('my_bookings.card_rate')}</span>
                     <span className="font-extrabold text-agri-700">₹{b.price_snapshot}/q</span>
                   </div>
                 </div>
@@ -208,7 +208,7 @@ export function MyBookingsPage() {
                         className="inline-flex items-center gap-1.5 py-2 px-3 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800"
                       >
                         <QrCode className="w-3.5 h-3.5" />
-                        <span>View QR Token</span>
+                        <span>{t('my_bookings.view_qr_btn')}</span>
                       </button>
 
                       <Link
@@ -216,7 +216,7 @@ export function MyBookingsPage() {
                         className="inline-flex items-center gap-1.5 py-2 px-3 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 font-bold text-xs hover:bg-blue-100"
                       >
                         <Clock className="w-3.5 h-3.5" />
-                        <span>Track Live Queue</span>
+                        <span>{t('my_bookings.track_queue_btn')}</span>
                       </Link>
                     </div>
 
@@ -225,7 +225,7 @@ export function MyBookingsPage() {
                         onClick={() => setCancellingBooking(b)}
                         className="py-2 px-3 rounded-xl border border-red-200 text-red-600 font-bold text-xs hover:bg-red-50"
                       >
-                        Cancel Booking
+                        {t('my_bookings.cancel_slot_btn')}
                       </button>
                     )}
                   </>
