@@ -101,9 +101,8 @@ export function NotificationBell() {
                 <div
                   key={n.id}
                   onClick={() => !n.is_read && handleMarkAsRead(n.id)}
-                  className={`p-4 text-xs transition-colors cursor-pointer hover:bg-slate-50 ${
-                    n.is_read ? 'opacity-70 bg-white' : 'bg-emerald-50/40 font-medium'
-                  }`}
+                  className={`p-4 text-xs transition-colors cursor-pointer hover:bg-slate-50 ${n.is_read ? 'opacity-70 bg-white' : 'bg-emerald-50/40 font-medium'
+                    }`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-start gap-2.5">

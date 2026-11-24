@@ -15,7 +15,7 @@
 - **🚀 Live Web Application (Frontend):** [https://smart-agri-procurement.vercel.app/](https://smart-agri-procurement.vercel.app/)
 - **⚡ Production API Gateway (Backend):** [https://agri-procure-api.onrender.com](https://agri-procure-api.onrender.com)
 - **📋 Full SRS Specification (v1.0):** [`agri_procurement_SRS_v1.md`](./agri_procurement_SRS_v1.md)
-- **📊 5-Slide Viva Presentation Deck:** [`Smart_Agri_Procurement_Presentation.pptx`](./Smart_Agri_Procurement_Presentation.pptx)
+- **📊 5-Slide Viva Presentation Deck:** [`Smart_Agri_Procurement_Presentation.pdf`](./Smart_Agri_Procurement_Presentation.pdf)
 
 ---
 
