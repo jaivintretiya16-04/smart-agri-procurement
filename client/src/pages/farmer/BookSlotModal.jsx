@@ -43,7 +43,7 @@ export function BookSlotModal({ center, onClose }) {
           }
         }
       } catch (err) {
-        setError('Failed to load slots for selected date');
+        setError(language === 'hi' ? 'चयनित तिथि के लिए स्लॉट लोड करने में विफल' : 'Failed to load slots for selected date');
       } finally {
         setLoadingSlots(false);
       }
@@ -52,7 +52,7 @@ export function BookSlotModal({ center, onClose }) {
     if (center?.id && date) {
       loadSlots();
     }
-  }, [center, date]);
+  }, [center, date, language]);
 
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ export function BookSlotModal({ center, onClose }) {
 
     const q = parseFloat(quantity);
     if (isNaN(q) || q <= 0 || q > 1000) {
-      setError('Estimated quantity must be between 0.5 and 1000 quintals');
+      setError(language === 'hi' ? 'अनुमानित फसल मात्रा 0.5 से 1000 क्विंटल के बीच होनी चाहिए' : 'Estimated quantity must be between 0.5 and 1000 quintals');
       return;
     }
 
@@ -83,7 +83,7 @@ export function BookSlotModal({ center, onClose }) {
         });
       }
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Booking reservation failed');
+      setError(err.response?.data?.message || (language === 'hi' ? 'स्लॉट आरक्षण विफल रहा' : 'Booking reservation failed'));
     } finally {
       setSubmitting(false);
     }

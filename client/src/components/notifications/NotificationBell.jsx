@@ -72,11 +72,11 @@ export function NotificationBell() {
           <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
             <div className="flex items-center gap-2">
               <span className="text-xs font-black text-slate-900 uppercase tracking-wider">
-                Notifications
+                {language === 'hi' ? 'सूचनाएं' : 'Notifications'}
               </span>
               {unreadCount > 0 && (
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-red-100 text-red-700">
-                  {unreadCount} new
+                  {unreadCount} {language === 'hi' ? 'नई' : 'new'}
                 </span>
               )}
             </div>
@@ -86,7 +86,7 @@ export function NotificationBell() {
                 onClick={handleMarkAllRead}
                 className="text-[11px] font-bold text-agri-700 hover:underline"
               >
-                Mark all read
+                {language === 'hi' ? 'सभी को पढ़ा हुआ चिन्हित करें' : 'Mark all read'}
               </button>
             )}
           </div>
@@ -94,7 +94,7 @@ export function NotificationBell() {
           <div className="max-h-80 overflow-y-auto divide-y divide-slate-100">
             {notifications.length === 0 ? (
               <div className="p-8 text-center text-xs text-slate-400 font-medium">
-                No notifications at this time
+                {language === 'hi' ? 'इस समय कोई सूचना नहीं है' : 'No notifications at this time'}
               </div>
             ) : (
               notifications.map((n) => (

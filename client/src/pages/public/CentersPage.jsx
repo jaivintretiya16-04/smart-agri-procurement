@@ -50,7 +50,7 @@ export function CentersPage() {
       return;
     }
     if (role !== 'farmer') {
-      alert('Only farmers can reserve procurement appointments.');
+      alert(language === 'hi' ? 'केवल पंजीकृत किसान ही खरीद स्लॉट आरक्षित कर सकते हैं।' : 'Only farmers can reserve procurement appointments.');
       return;
     }
     setBookingModalCenter(center);

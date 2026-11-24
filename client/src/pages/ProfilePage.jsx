@@ -59,7 +59,7 @@ export function ProfilePage() {
     if (formData.name && formData.name.trim()) {
       const trimmedName = formData.name.trim();
       if (trimmedName.length < 2 || !/^[a-zA-Z0-9\u0900-\u097F\s.\-']+$/.test(trimmedName)) {
-        setErrorMsg('Please enter a valid name (min 2 characters)');
+        setErrorMsg(language === 'hi' ? 'कृपया एक मान्य नाम दर्ज करें (कम से कम 2 अक्षर)' : 'Please enter a valid name (min 2 characters)');
         return;
       }
     }
@@ -67,14 +67,14 @@ export function ProfilePage() {
     if (formData.mobile && formData.mobile.trim()) {
       const mobileRegex = /^[6-9]\d{9}$/;
       if (!mobileRegex.test(formData.mobile.trim())) {
-        setErrorMsg('Mobile number must be exactly 10 digits and start with 6, 7, 8, or 9');
+        setErrorMsg(language === 'hi' ? 'मोबाइल नंबर ठीक 10 अंकों का होना चाहिए और 6, 7, 8 या 9 से शुरू होना चाहिए' : 'Mobile number must be exactly 10 digits and start with 6, 7, 8, or 9');
         return;
       }
     }
 
     if (formData.pincode && formData.pincode.trim()) {
       if (!/^[1-9]\d{5}$/.test(formData.pincode.trim())) {
-        setErrorMsg('PIN code must be exactly 6 digits and cannot start with 0');
+        setErrorMsg(language === 'hi' ? 'पिन कोड ठीक 6 अंकों का होना चाहिए और 0 से शुरू नहीं हो सकता' : 'PIN code must be exactly 6 digits and cannot start with 0');
         return;
       }
     }
@@ -92,7 +92,7 @@ export function ProfilePage() {
       setLanguage(formData.preferred_language);
       setSuccessMsg(t('profile.saved_success'));
     } catch (err) {
-      setErrorMsg(err.response?.data?.message || err.message || 'Failed to update profile');
+      setErrorMsg(err.response?.data?.message || (language === 'hi' ? 'प्रोफ़ाइल अपडेट विफल' : 'Failed to update profile'));
     } finally {
       setLoading(false);
     }
@@ -146,7 +146,7 @@ export function ProfilePage() {
             {/* Email (Read Only) */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-                {t('auth.email')} (Immutable)
+                {t('auth.email')} ({language === 'hi' ? 'अपरिवर्तनीय' : 'Immutable'})
               </label>
               <input
                 type="email"
@@ -166,7 +166,7 @@ export function ProfilePage() {
                 name="mobile"
                 maxLength={10}
                 inputMode="numeric"
-                placeholder="10-digit mobile (e.g. 9876543210)"
+                placeholder={language === 'hi' ? '10-अंकों का मोबाइल (उदा. 9876543210)' : '10-digit mobile (e.g. 9876543210)'}
                 value={formData.mobile}
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-agri-500 focus:outline-none"

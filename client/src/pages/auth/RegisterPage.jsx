@@ -48,23 +48,23 @@ export function RegisterPage() {
     // Logical Validation Checks
     const trimmedName = formData.name.trim();
     if (trimmedName.length < 2 || !/^[a-zA-Z0-9\u0900-\u097F\s.\-']+$/.test(trimmedName)) {
-      setError('Please enter a valid name (min 2 characters)');
+      setError(language === 'hi' ? 'कृपया एक मान्य नाम दर्ज करें (कम से कम 2 अक्षर)' : 'Please enter a valid name (min 2 characters)');
       return;
     }
 
     const mobileRegex = /^[6-9]\d{9}$/;
     if (!mobileRegex.test(formData.mobile)) {
-      setError('Mobile number must be exactly 10 digits and start with 6, 7, 8, or 9');
+      setError(language === 'hi' ? 'मोबाइल नंबर ठीक 10 अंकों का होना चाहिए और 6, 7, 8 या 9 से शुरू होना चाहिए' : 'Mobile number must be exactly 10 digits and start with 6, 7, 8, or 9');
       return;
     }
 
     if (formData.pincode && !/^[1-9]\d{5}$/.test(formData.pincode)) {
-      setError('PIN code must be exactly 6 digits and cannot start with 0');
+      setError(language === 'hi' ? 'पिन कोड ठीक 6 अंकों का होना चाहिए और 0 से शुरू नहीं हो सकता' : 'PIN code must be exactly 6 digits and cannot start with 0');
       return;
     }
 
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
+      setError(language === 'hi' ? 'पासवर्ड कम से कम 6 अक्षरों का होना चाहिए' : 'Password must be at least 6 characters long');
       return;
     }
 
@@ -79,7 +79,7 @@ export function RegisterPage() {
       });
       navigate('/farmer', { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Registration failed');
+      setError(err.response?.data?.message || (language === 'hi' ? 'पंजीकरण विफल रहा' : 'Registration failed'));
     } finally {
       setLoading(false);
     }
@@ -118,7 +118,7 @@ export function RegisterPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="e.g. Ramesh Kumar"
+                  placeholder={language === 'hi' ? 'उदा. रमेश कुमार' : 'e.g. Ramesh Kumar'}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-agri-500 focus:outline-none"
                 />
               </div>
@@ -139,7 +139,7 @@ export function RegisterPage() {
                   inputMode="numeric"
                   value={formData.mobile}
                   onChange={handleChange}
-                  placeholder="10-digit mobile (e.g. 9876543210)"
+                  placeholder={language === 'hi' ? '10-अंकों का मोबाइल (उदा. 9876543210)' : '10-digit mobile (e.g. 9876543210)'}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-agri-500 focus:outline-none"
                 />
               </div>
@@ -178,7 +178,7 @@ export function RegisterPage() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  placeholder="Min 6 characters"
+                  placeholder={language === 'hi' ? 'कम से कम 6 अक्षर' : 'Min 6 characters'}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-agri-500 focus:outline-none"
                 />
               </div>
@@ -212,7 +212,7 @@ export function RegisterPage() {
                 name="village"
                 value={formData.village}
                 onChange={handleChange}
-                placeholder="Village / Gram Panchayat"
+                placeholder={language === 'hi' ? 'गाँव / ग्राम पंचायत' : 'Village / Gram Panchayat'}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-agri-500 focus:outline-none"
               />
             </div>
@@ -229,7 +229,7 @@ export function RegisterPage() {
                 inputMode="numeric"
                 value={formData.pincode}
                 onChange={handleChange}
-                placeholder="6-digit PIN (e.g. 226001)"
+                placeholder={language === 'hi' ? '6-अंकों का पिन (उदा. 226001)' : '6-digit PIN (e.g. 226001)'}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-agri-500 focus:outline-none"
               />
             </div>

@@ -61,7 +61,7 @@ export function Navbar() {
                 AgriProcure
               </span>
               <span className="hidden sm:block text-[11px] font-semibold text-agri-700 uppercase tracking-wider">
-                Smart Mandi Queue
+                {language === 'hi' ? 'स्मार्ट मंडी कतार' : 'Smart Mandi Queue'}
               </span>
             </div>
           </Link>

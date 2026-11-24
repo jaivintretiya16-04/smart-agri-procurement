@@ -6,7 +6,7 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export function LoginPage() {
   const { login } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,7 +34,7 @@ export function LoginPage() {
         navigate('/farmer', { replace: true });
       }
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Failed to sign in');
+      setError(err.response?.data?.message || (language === 'hi' ? 'लॉग इन विफल रहा। कृपया अपना ईमेल और पासवर्ड जांचें।' : 'Failed to sign in'));
     } finally {
       setLoading(false);
     }

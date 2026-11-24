@@ -16,6 +16,20 @@ export function MyBookingsPage() {
   const [cancelReason, setCancelReason] = useState('');
   const [actionSuccess, setActionSuccess] = useState('');
 
+  const getStatusLabel = (status) => {
+    if (language !== 'hi') return status.replace('_', ' ').toUpperCase();
+    switch (status) {
+      case 'confirmed': return 'पुष्टि हुई';
+      case 'checked_in': return 'गेट चेक-इन';
+      case 'in_service': return 'तौल जारी';
+      case 'completed': return 'सफल संपन्न';
+      case 'cancelled': return 'रद्द किया गया';
+      case 'no_show': return 'अनुपस्थित';
+      case 'rescheduling_required': return 'पुनर्निर्धारण आवश्यक';
+      default: return status.replace('_', ' ').toUpperCase();
+    }
+  };
+
   useEffect(() => {
     loadBookings();
   }, []);
@@ -42,7 +56,11 @@ export function MyBookingsPage() {
       await api.post(`/bookings/${cancellingBooking.id}/cancel`, {
         reason: cancelReason.trim(),
       });
-      setActionSuccess(`Booking ${cancellingBooking.booking_reference} cancelled and capacity released.`);
+      setActionSuccess(
+        language === 'hi'
+          ? `बुकिंग ${cancellingBooking.booking_reference} सफलतापूर्वक रद्द कर दी गई एवं स्लॉट क्षमता पुनः जारी कर दी गई।`
+          : `Booking ${cancellingBooking.booking_reference} cancelled and capacity released.`
+      );
       setCancellingBooking(null);
       setCancelReason('');
       loadBookings();
@@ -144,7 +162,7 @@ export function MyBookingsPage() {
                         : 'bg-red-100 text-red-800'
                     }`}
                   >
-                    {b.status.replace('_', ' ').toUpperCase()}
+                    {getStatusLabel(b.status)}
                   </span>
                 </div>
 
@@ -231,7 +249,9 @@ export function MyBookingsPage() {
                   </>
                 ) : (
                   <span className="text-xs text-slate-400 font-medium">
-                    {b.cancellation_reason ? `Reason: ${b.cancellation_reason}` : 'Booking archived'}
+                    {b.cancellation_reason
+                      ? `${language === 'hi' ? 'कारण:' : 'Reason:'} ${b.cancellation_reason}`
+                      : (language === 'hi' ? 'बुकिंग संग्रहीत' : 'Booking archived')}
                   </span>
                 )}
               </div>
@@ -244,9 +264,13 @@ export function MyBookingsPage() {
       {selectedQrBooking && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
-            <h3 className="text-lg font-black text-slate-900">Digital Appointment Token</h3>
+            <h3 className="text-lg font-black text-slate-900">
+              {language === 'hi' ? 'डिजिटल अपॉइंटमेंट टोकन' : 'Digital Appointment Token'}
+            </h3>
             <p className="text-xs text-slate-500">
-              Present this signed QR token to the center operator upon arrival at the mandi.
+              {language === 'hi'
+                ? 'मंडी आगमन पर सुरक्षा गेट स्कैनर अथवा केंद्र ऑपरेटर को यह हस्ताक्षरित क्यूआर टोकन दिखाएं।'
+                : 'Present this signed QR token to the center operator upon arrival at the mandi.'}
             </p>
 
             <div className="py-2 flex justify-center">
@@ -259,18 +283,20 @@ export function MyBookingsPage() {
 
             <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-left space-y-1">
               <div className="flex justify-between">
-                <span className="text-slate-400">Center:</span>
-                <span className="font-bold text-slate-800">{selectedQrBooking.center_name}</span>
+                <span className="text-slate-400">{language === 'hi' ? 'खरीद केंद्र:' : 'Center:'}</span>
+                <span className="font-bold text-slate-800">{localizeCenterName(selectedQrBooking.center_name)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Slot Window:</span>
+                <span className="text-slate-400">{language === 'hi' ? 'समय स्लॉट:' : 'Slot Window:'}</span>
                 <span className="font-bold text-slate-800">
                   {new Date(selectedQrBooking.starts_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Locked Rate:</span>
-                <span className="font-bold text-agri-700">₹{selectedQrBooking.price_snapshot}/quintal</span>
+                <span className="text-slate-400">{language === 'hi' ? 'आरक्षित दर:' : 'Locked Rate:'}</span>
+                <span className="font-bold text-agri-700">
+                  ₹{selectedQrBooking.price_snapshot}/{language === 'hi' ? 'क्विंटल' : 'quintal'}
+                </span>
               </div>
             </div>
 
@@ -278,7 +304,7 @@ export function MyBookingsPage() {
               onClick={() => setSelectedQrBooking(null)}
               className="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800"
             >
-              Done / Close
+              {language === 'hi' ? 'पूर्ण / बंद करें' : 'Done / Close'}
             </button>
           </div>
         </div>
@@ -290,23 +316,35 @@ export function MyBookingsPage() {
           <div className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-xl">
             <h3 className="text-lg font-bold text-red-600 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-red-500" />
-              Cancel Appointment
+              {t('my_bookings.cancel_modal_title')}
             </h3>
             <p className="text-xs text-slate-600">
-              Are you sure you want to cancel booking <span className="font-bold text-slate-800">{cancellingBooking.booking_reference}</span>? Your reserved slot capacity will be released back to other farmers.
+              {language === 'hi' ? (
+                <>
+                  क्या आप वास्तव में बुकिंग <span className="font-bold text-slate-800">{cancellingBooking.booking_reference}</span> को रद्द करना चाहते हैं? आपकी आरक्षित स्लॉट क्षमता अन्य किसान भाइयों के लिए पुनः जारी कर दी जाएगी।
+                </>
+              ) : (
+                <>
+                  Are you sure you want to cancel booking <span className="font-bold text-slate-800">{cancellingBooking.booking_reference}</span>? Your reserved slot capacity will be released back to other farmers.
+                </>
+              )}
             </p>
 
             <form onSubmit={handleCancelSubmit} className="space-y-4">
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                  Cancellation Reason *
+                  {t('my_bookings.cancel_reason_label')}
                 </label>
                 <textarea
                   required
                   rows={2}
                   value={cancelReason}
                   onChange={(e) => setCancelReason(e.target.value)}
-                  placeholder="e.g. Transport tractor delayed, weather issues..."
+                  placeholder={
+                    language === 'hi'
+                      ? 'उदा. ट्रैक्टर परिवहन में देरी, मौसम संबंधी समस्या, फसल सुखाने में समय...'
+                      : 'e.g. Transport tractor delayed, weather issues...'
+                  }
                   className="w-full p-3 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-red-500 focus:outline-none"
                 />
               </div>
@@ -317,13 +355,13 @@ export function MyBookingsPage() {
                   onClick={() => setCancellingBooking(null)}
                   className="px-4 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700"
                 >
-                  Keep Booking
+                  {t('my_bookings.keep_slot_btn')}
                 </button>
                 <button
                   type="submit"
                   className="px-5 py-2 rounded-xl bg-red-600 text-white text-xs font-bold hover:bg-red-700"
                 >
-                  Confirm Cancellation
+                  {t('my_bookings.confirm_cancel_btn')}
                 </button>
               </div>
             </form>

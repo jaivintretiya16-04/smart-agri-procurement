@@ -288,12 +288,14 @@ export function FarmerDashboard() {
           <div className="pt-6 border-t border-slate-100 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <h3 className="text-base font-bold text-slate-900">
-                Ranked Eligible Centers ({recommendations.length} Verified Options)
+                {language === 'hi'
+                  ? `रैंक किए गए पात्र केंद्र (${recommendations.length} सत्यापित विकल्प)`
+                  : `Ranked Eligible Centers (${recommendations.length} Verified Options)`}
               </h3>
 
               {/* Sorting Overrides */}
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <span>Sort by:</span>
+                <span>{language === 'hi' ? 'क्रमबद्ध करें:' : 'Sort by:'}</span>
                 <select
                   value={sortBy}
                   onChange={(e) => {
@@ -302,17 +304,27 @@ export function FarmerDashboard() {
                   }}
                   className="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 font-bold text-slate-700"
                 >
-                  <option value="score">Balanced Recommendation Score (40/30/20/10)</option>
-                  <option value="price">Highest Published Price</option>
-                  <option value="distance">Nearest Distance (Proximity)</option>
-                  <option value="slot">Earliest Slot</option>
+                  <option value="score">
+                    {language === 'hi' ? 'संतुलित अनुशंसा स्कोर (40/30/20/10)' : 'Balanced Recommendation Score (40/30/20/10)'}
+                  </option>
+                  <option value="price">
+                    {language === 'hi' ? 'उच्चतम प्रकाशित दर' : 'Highest Published Price'}
+                  </option>
+                  <option value="distance">
+                    {language === 'hi' ? 'निकटतम दूरी' : 'Nearest Distance (Proximity)'}
+                  </option>
+                  <option value="slot">
+                    {language === 'hi' ? 'निकटतम उपलब्ध स्लॉट' : 'Earliest Slot'}
+                  </option>
                 </select>
               </div>
             </div>
 
             {recommendations.length === 0 ? (
               <div className="p-8 text-center bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-500">
-                No active centers currently accept {selectedCrop} for {quantity} quintals.
+                {language === 'hi'
+                  ? `वर्तमान में कोई सक्रिय केंद्र ${quantity} क्विंटल के लिए इस फसल को स्वीकार नहीं कर रहा है।`
+                  : `No active centers currently accept ${selectedCrop} for ${quantity} quintals.`}
               </div>
             ) : (
               <div className="space-y-4">
@@ -342,7 +354,9 @@ export function FarmerDashboard() {
                                 : 'bg-emerald-100 text-emerald-800'
                             }`}
                           >
-                            {rec.type === 'government' ? 'Government Mandi' : 'Private Hub'}
+                            {rec.type === 'government'
+                              ? (language === 'hi' ? 'सरकारी मंडी (MSP)' : 'Government Mandi')
+                              : (language === 'hi' ? 'निजी हब' : 'Private Hub')}
                           </span>
 
                           {/* Badges */}
@@ -365,8 +379,8 @@ export function FarmerDashboard() {
                             <MapPin className="w-3.5 h-3.5 text-agri-600" />
                             <span>
                               {rec.distanceKm !== null
-                                ? `~${rec.distanceKm} km away`
-                                : `District Proximity (${rec.district})`}
+                                ? (language === 'hi' ? `~${rec.distanceKm} किमी दूर` : `~${rec.distanceKm} km away`)
+                                : (language === 'hi' ? `ज़िला निकटता (${rec.district})` : `District Proximity (${rec.district})`)}
                             </span>
                           </div>
 
@@ -375,15 +389,24 @@ export function FarmerDashboard() {
                             <Clock className="w-3.5 h-3.5 text-blue-600" />
                             <span>
                               {rec.earliestSlot
-                                ? `Next Slot: ${new Date(rec.earliestSlot.starts_at).toLocaleDateString([], {
-                                    weekday: 'short',
-                                    month: 'short',
-                                    day: 'numeric',
-                                  })} at ${new Date(rec.earliestSlot.starts_at).toLocaleTimeString([], {
-                                    hour: '2-digit',
-                                    minute: '2-digit',
-                                  })}`
-                                : 'Check daily availability'}
+                                ? (language === 'hi'
+                                    ? `अगला स्लॉट: ${new Date(rec.earliestSlot.starts_at).toLocaleDateString('hi-IN', {
+                                        weekday: 'short',
+                                        month: 'short',
+                                        day: 'numeric',
+                                      })} ${new Date(rec.earliestSlot.starts_at).toLocaleTimeString([], {
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                      })}`
+                                    : `Next Slot: ${new Date(rec.earliestSlot.starts_at).toLocaleDateString([], {
+                                        weekday: 'short',
+                                        month: 'short',
+                                        day: 'numeric',
+                                      })} at ${new Date(rec.earliestSlot.starts_at).toLocaleTimeString([], {
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                      })}`)
+                                : (language === 'hi' ? 'दैनिक स्लॉट उपलब्धता जांचें' : 'Check daily availability')}
                             </span>
                           </div>
                         </div>
@@ -394,7 +417,7 @@ export function FarmerDashboard() {
                         {/* Recommendation Score */}
                         <div className="text-left lg:text-right">
                           <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">
-                            Recommendation Score
+                            {language === 'hi' ? 'अनुशंसा स्कोर' : 'Recommendation Score'}
                           </span>
                           <span className="text-2xl font-black text-agri-800">
                             {rec.recommendationScore}
@@ -408,7 +431,7 @@ export function FarmerDashboard() {
                             ₹{rec.matchedCrop?.price_per_quintal}/q
                           </span>
                           <span className="text-[11px] font-bold text-emerald-700 block">
-                            Est. ₹{rec.estimatedEarnings?.toLocaleString('en-IN')}
+                            {language === 'hi' ? 'अनुमानित कुल' : 'Est.'}: ₹{rec.estimatedEarnings?.toLocaleString('en-IN')}
                           </span>
                         </div>
 
@@ -417,7 +440,7 @@ export function FarmerDashboard() {
                           to={`/centers`}
                           className="py-2.5 px-4 rounded-xl gradient-agri text-white font-bold text-xs shadow-sm hover:opacity-95 transition-all inline-flex items-center gap-1.5"
                         >
-                          <span>Select Center</span>
+                          <span>{language === 'hi' ? 'केंद्र चुनें' : 'Select Center'}</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
@@ -432,23 +455,33 @@ export function FarmerDashboard() {
 
       {/* Registered Farmer Profile Summary */}
       <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-4">
-        <h3 className="text-base font-bold text-slate-900">Registered Farmer Profile</h3>
+        <h3 className="text-base font-bold text-slate-900">
+          {language === 'hi' ? 'पंजीकृत किसान प्रोफ़ाइल' : 'Registered Farmer Profile'}
+        </h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
           <div>
-            <span className="text-slate-400 block font-medium">District</span>
+            <span className="text-slate-400 block font-medium">
+              {language === 'hi' ? 'ज़िला' : 'District'}
+            </span>
             <span className="font-bold text-slate-800">{user?.profile?.district || 'Lucknow'}</span>
           </div>
           <div>
-            <span className="text-slate-400 block font-medium">Village / Gram</span>
+            <span className="text-slate-400 block font-medium">
+              {language === 'hi' ? 'गाँव / ग्राम' : 'Village / Gram'}
+            </span>
             <span className="font-bold text-slate-800">{user?.profile?.village || 'Bakshi Ka Talab'}</span>
           </div>
           <div>
-            <span className="text-slate-400 block font-medium">Mobile Contact</span>
+            <span className="text-slate-400 block font-medium">
+              {language === 'hi' ? 'मोबाइल संपर्क' : 'Mobile Contact'}
+            </span>
             <span className="font-bold text-slate-800">{user?.profile?.mobile || '9876543210'}</span>
           </div>
           <div>
-            <span className="text-slate-400 block font-medium">Language</span>
-            <span className="font-bold text-slate-800 uppercase">{user?.preferred_language || 'hi'}</span>
+            <span className="text-slate-400 block font-medium">
+              {language === 'hi' ? 'पसंदीदा भाषा' : 'Language'}
+            </span>
+            <span className="font-bold text-slate-800 uppercase">{user?.preferred_language || language}</span>
           </div>
         </div>
       </div>
